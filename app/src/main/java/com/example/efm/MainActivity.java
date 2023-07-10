@@ -1,8 +1,10 @@
 package com.example.efm;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +32,38 @@ public class MainActivity extends AppCompatActivity {
      ArrayAdapter<String> spinnerAdapter;
 
 
+
+
+
+        btncalcule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String numberString = ETnumber.getText().toString().trim();
+                if (numberString.isEmpty()) {
+
+                    showAlertDialog("Error", "Please enter a number.");
+                } else {
+                    try {
+                        double number = Double.parseDouble(numberString);
+                    } catch (NumberFormatException e) {
+                        showAlertDialog("Error", "Invalid number . Please enter a valid number.");
+                    }
+                }
+            }
+
+            private void showAlertDialog(String title, String message) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(title)
+                        .setMessage(message);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+
+
+
+
         String[] spinnerItems = {"Opposite", "Absolut value", "Square",};
         spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerItems);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -51,12 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
-
-
-
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
