@@ -3,7 +3,11 @@ package com.example.efm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,8 +27,40 @@ public class MainActivity extends AppCompatActivity {
      ETnumber = findViewById(R.id.ETnumber);
      Option = findViewById(R.id.Option);
      btncalcule = findViewById(R.id.btncalcule);
+     ArrayAdapter<String> spinnerAdapter;
+
+
+        String[] spinnerItems = {"Opposite", "Absolut value", "Square",};
+        spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerItems);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Option.setAdapter(spinnerAdapter);
+
+        Option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedColor = parent.getItemAtPosition(position).toString();
+
+                switch (selectedColor) {
+                    case "Opposite":
+                        break;
+                    case "Absolut value":
+                        break;
+                    case "Plum":
+                        break;
+                    case "square":
+                        break;
+                }
 
 
 
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
-}
+    }
